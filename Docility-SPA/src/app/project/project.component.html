@@ -1,0 +1,11 @@
+<div>
+  <table>
+    <thead>
+      <td>Id</td><td>Project Name</td><td>Created By</td><td>Created On</td>
+    </thead>
+    <tr *ngFor="let project of projects">
+      <td>{{project.id}}</td><td>{{project.projectName}}</td><td>{{project.createdby}}</td><td>{{project.createdOn}}</td>
+    </tr>
+  </table>
+</div>
+
