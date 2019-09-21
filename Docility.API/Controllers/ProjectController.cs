@@ -1,11 +1,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Docility.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Docility.API.Controllers
-{
+{   
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectController : ControllerBase
@@ -26,6 +28,7 @@ namespace Docility.API.Controllers
         }
 
          // GET api/projects/id
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProject(int id)
         {

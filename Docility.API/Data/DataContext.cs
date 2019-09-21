@@ -8,5 +8,6 @@ namespace Docility.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base (options) { }
 
         public DbSet<Project> Projects { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
