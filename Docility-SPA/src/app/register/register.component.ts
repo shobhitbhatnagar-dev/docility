@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../_services/auth.service';
+import { ValuesService } from '../_services/values.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
   values: any;
   model: any = {};
-  constructor(private http: HttpClient) { }
+  constructor(private val: ValuesService, private auth: AuthService) { }
 
   ngOnInit() {
     this.getValues();
@@ -17,16 +18,19 @@ export class RegisterComponent implements OnInit {
 
   register() {
     console.log(this.model);
+    this.auth.register(this.model).subscribe(() => {
+      console.log('Registration Successful');
+    }, error => {
+      console.log(error);
+    });
   }
 
   cancel() {
     console.log('cancelled');
   }
   getValues() {
-    this.http.get('http://localhost:5000/api/values/1').subscribe(response => {
+    this.val.getValues(1).subscribe(response => {
     this.values = response;
-    console.log('register');
-    console.log(this.values);
     }, error => {
       console.log(error);
     });

@@ -11,6 +11,7 @@ import { FormsModule} from '@angular/forms';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ValuesService } from './_services/values.service';
 
 @NgModule({
    declarations: [
@@ -27,7 +28,8 @@ import { RegisterComponent } from './register/register.component';
       FormsModule
    ],
    providers: [
-      AuthService
+      AuthService,
+      ValuesService
    ],
    bootstrap: [
       AppComponent
