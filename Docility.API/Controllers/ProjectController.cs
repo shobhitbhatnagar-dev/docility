@@ -18,7 +18,9 @@ namespace Docility.API.Controllers
         {
             _context = context;
         }
+    
          // GET api/projects
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetProjects()
         {

@@ -57,7 +57,8 @@ namespace Docility.API.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFormRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFormRepo.Username)
+                new Claim(ClaimTypes.Name, userFormRepo.Username),
+                new Claim(ClaimTypes.Role, userFormRepo.role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));

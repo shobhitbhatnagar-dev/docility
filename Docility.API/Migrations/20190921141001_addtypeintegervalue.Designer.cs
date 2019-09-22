@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Docility.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190920165836_AddedUsersEntity")]
-    partial class AddedUsersEntity
+    [Migration("20190921141001_addtypeintegervalue")]
+    partial class addtypeintegervalue
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,8 @@ namespace Docility.API.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("ProjectName");
+                    b.Property<string>("ProjectName")
+                        .IsRequired();
 
                     b.Property<string>("createdby");
 
@@ -52,6 +53,24 @@ namespace Docility.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Docility.API.Models.Value", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Key");
+
+                    b.Property<string>("KeyDisplayName");
+
+                    b.Property<string>("KeyValue");
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Values");
                 });
 #pragma warning restore 612, 618
         }

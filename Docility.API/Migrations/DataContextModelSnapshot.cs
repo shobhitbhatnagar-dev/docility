@@ -52,6 +52,24 @@ namespace Docility.API.Migrations
 
                     b.ToTable("Users");
                 });
+
+            modelBuilder.Entity("Docility.API.Models.Value", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Key");
+
+                    b.Property<string>("KeyDisplayName");
+
+                    b.Property<string>("KeyValue");
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Values");
+                });
 #pragma warning restore 612, 618
         }
     }

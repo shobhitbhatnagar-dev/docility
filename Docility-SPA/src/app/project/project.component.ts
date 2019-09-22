@@ -14,9 +14,11 @@ projects: any;
     this.getProjects();
   }
 
-  getProjects(){
+  getProjects() {
     this.http.get('http://localhost:5000/api/project').subscribe(response => {
     this.projects = response;
+    console.log('project Component');
+    console.log(this.projects);
     }, error => {
       console.log(error);
     });
