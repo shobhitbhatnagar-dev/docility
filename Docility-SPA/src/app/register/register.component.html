@@ -16,7 +16,7 @@
           <div class="input-group-prepend">
             <label class="input-group-text" for="roles">Roles</label>
           </div>
-          <select required class="custom-select"  name="roles" [(ngModel)]="model.role">
+          <select required class="form-control custom-select"  name="roles" [(ngModel)]="model.role">
             <option *ngFor="let value of values" value={{value.keyValue}}>{{value.keyDisplayName}}</option>
           </select>         
         </div>

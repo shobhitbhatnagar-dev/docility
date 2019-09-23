@@ -52,7 +52,7 @@ namespace Docility.API.Controllers
             var userFormRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
             if (userFormRepo == null)
-                return Unauthorized();
+                return Unauthorized("Incorrect Username & Password");
 
             var claims = new[]
             {
