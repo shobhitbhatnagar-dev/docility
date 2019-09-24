@@ -16,6 +16,10 @@ values: any = [];
   }
 
 registerToggel() {
-  this.registerMode = ! this.registerMode;
+  this.registerMode = true;
+}
+
+cancelRegisterMode(registerMode: boolean) {
+ this.registerMode = registerMode;
 }
 }
