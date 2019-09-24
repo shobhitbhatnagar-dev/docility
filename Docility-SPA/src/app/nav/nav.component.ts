@@ -9,7 +9,7 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class NavComponent implements OnInit {
 model: any = {};
-  constructor( private authServices: AuthService, private alert: AlertifyService) { }
+  constructor( public authServices: AuthService, private alert: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -23,8 +23,7 @@ model: any = {};
   }
 
    loggedIn() {
-     const token = localStorage.getItem('token');
-     return !!token;
+    return this.authServices.loggedIn();
   }
 
   loggedOut() {

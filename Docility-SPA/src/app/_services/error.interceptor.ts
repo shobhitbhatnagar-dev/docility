@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                             }
                         }
                     }
-                    return throwError(modelStateError || serverError || 'Shobhit Server Error');
+                    return throwError(modelStateError || serverError || 'Server Error');
                 }
             })
         );
