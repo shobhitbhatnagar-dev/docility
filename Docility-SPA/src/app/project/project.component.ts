@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-project',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProjectComponent implements OnInit {
 projects: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private alert: AlertifyService) { }
 
   ngOnInit() {
     this.getProjects();
@@ -17,10 +18,8 @@ projects: any;
   getProjects() {
     this.http.get('http://localhost:5000/api/project').subscribe(response => {
     this.projects = response;
-    console.log('project Component');
-    console.log(this.projects);
     }, error => {
-      console.log(error);
+      this.alert.error(error);
     });
   }
 }
