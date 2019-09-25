@@ -10,7 +10,7 @@ export class AuthService {
   baseUrl = 'http://localhost:5000/api/auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
-  userRole: any;
+  userRole: string;
 
   constructor(private http: HttpClient) { }
 
@@ -22,11 +22,12 @@ login(model: any) {
       if (user) {
         localStorage.setItem('token', user.token);
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        console.log(this.decodedToken);
+        this.userRole = this.decodedToken.role;
       }
     })
   );
 }
+
 
 register(model: any) {
   return this.http.post(this.baseUrl + 'register', model);
@@ -36,6 +37,4 @@ loggedIn() {
 const token = localStorage.getItem('token');
 return !this.jwtHelper.isTokenExpired(token);
 }
-
-
 }
