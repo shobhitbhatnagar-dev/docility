@@ -9,11 +9,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError(error => {
                 if (error instanceof HttpErrorResponse) {
-                    const authError = error.status;
-                    if (authError === 401)
-                    {
-                        console.error(error.error);
-                        return throwError('Incorrect Username & Password');
+                    const authError = error.statusText;
+                    if (error.status === 401) {
+                        return throwError(error.statusText);
                     }
                     const applicationError = error.headers.get('Application-Error');
                     if (applicationError) {

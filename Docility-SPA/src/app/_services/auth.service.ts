@@ -22,7 +22,6 @@ login(model: any) {
       if (user) {
         localStorage.setItem('token', user.token);
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        this.userRole = this.decodedToken.role;
       }
     })
   );
@@ -36,5 +35,12 @@ register(model: any) {
 loggedIn() {
 const token = localStorage.getItem('token');
 return !this.jwtHelper.isTokenExpired(token);
+}
+
+checkRole(role: string) {
+  this.userRole = this.decodedToken.role;
+  if ( this.userRole === role) {
+    return true;
+ }return false;
 }
 }
