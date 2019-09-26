@@ -30,4 +30,10 @@ model: any = {};
     localStorage.removeItem('token');
     this.alert.success('logged out');
   }
+
+  checkRole(role: string) {
+    if ( role === this.authServices.userRole) {
+      return true;
+   }return false;
+  }
 }
