@@ -19,6 +19,9 @@ import { ModulesComponent } from './modules/modules.component';
 import { BugsComponent } from './bugs/bugs.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+import { AdminGuard } from './_guards/admin.guard';
+import { DeveloperGuard } from './_guards/developer.guard';
+import { TesterGuard } from './_guards/tester.guard';
 
 
 
@@ -45,7 +48,10 @@ import { AuthGuard } from './_guards/auth.guard';
       ErrorInterceptorProvider,
       ValuesService,
       AlertifyService,
-      AuthGuard
+      AuthGuard,
+      AdminGuard,
+      DeveloperGuard,
+      TesterGuard
    ],
    bootstrap: [
       AppComponent
