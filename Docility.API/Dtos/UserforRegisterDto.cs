@@ -9,7 +9,9 @@ namespace Docility.API.Dtos
 
         [Required(ErrorMessage = "Password is requried")]
         public string Password { get; set; }
-
+        [Required(ErrorMessage = "Email is requried")]
+        [EmailAddress]
+        public string Email { get; set; }
         public string Role { get; set; }
     }
 }

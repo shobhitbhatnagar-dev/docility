@@ -37,7 +37,8 @@ namespace Docility.API.Controllers
 
             var UsertoCreate = new User
             {
-                Username = userforRegisterDto.Username
+                Username = userforRegisterDto.Username,
+                EmailId = userforRegisterDto.Email
             };
 
             var CreatedUser = await _repo.Register(UsertoCreate, userforRegisterDto.Password, userforRegisterDto.Role);

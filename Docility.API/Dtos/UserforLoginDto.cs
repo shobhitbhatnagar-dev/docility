@@ -6,7 +6,7 @@ namespace Docility.API.Dtos
 
         public string Password { get; set; }
 
-
+        public string EmailId { get; set; }
         public string role { get; set; }
     }
 }
