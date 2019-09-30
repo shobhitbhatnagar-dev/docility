@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using AutoMapper;
 using Docility.API.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,23 +20,23 @@ namespace Docility.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetModules()
+        public async Task<IActionResult> GetModules(int projectId)
         {
             var modules = await _repo.GetModules();
             return Ok(modules);
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetModules(int id)
+        public async Task<IActionResult> GetModule(int id)
         {
             var module = await _repo.GetModule(id);
             return Ok(module);
         }
 
-        [HttpGet("find/{id}")]
-        public async Task<IActionResult> GetModulesByProjectId(int projectId)
+        [HttpGet("byproject/{id}")]
+        public async Task<IActionResult> GetModulesByProject(int id)
         {
-            var modules = await _repo.GetModulesByProject(projectId);
-            return Ok(modules);
+            var module = await _repo.GetModulesByProject(id);
+            return Ok(module);
         }
     }
 }

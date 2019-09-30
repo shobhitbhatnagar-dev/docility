@@ -26,9 +26,9 @@ namespace Docility.API.Data
 
         public async Task<Module> GetModule(int id)
         {
-           var module = await _context.Modules.FirstOrDefaultAsync(m => m.Id == id);
-           
-           return module;
+            var module = await _context.Modules.FirstOrDefaultAsync(m => m.Id == id);
+
+            return module;
         }
 
         public async Task<IEnumerable<Module>> GetModules()
@@ -39,19 +39,19 @@ namespace Docility.API.Data
 
         public async Task<IEnumerable<Module>> GetModulesByProject(int projectId)
         {
-            var modules = await _context.Modules.Where(m => m.ProjectId == projectId ).ToListAsync();
+            var modules = await _context.Modules.Where(m => m.ProjectId == projectId).ToListAsync();
             return modules;
         }
 
         public async Task<Project> GetProject(int id)
         {
-            var project= await _context.Projects.Include(m => m.Modules).FirstOrDefaultAsync(p => p.Id == id);
+            var project = await _context.Projects.Include(m => m.Modules).FirstOrDefaultAsync(p => p.Id == id);
             return project;
         }
 
         public async Task<IEnumerable<Project>> GetProjects()
         {
-            var projects = await _context.Projects.Include(m => m.Modules) .ToListAsync();
+            var projects = await _context.Projects.Include(m => m.Modules).ToListAsync();
             return projects;
         }
 
