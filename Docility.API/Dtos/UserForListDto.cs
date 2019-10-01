@@ -1,4 +1,5 @@
 using System;
+using Docility.API.Models;
 
 namespace Docility.API.Dtos
 {
@@ -9,5 +10,7 @@ namespace Docility.API.Dtos
         public string EmailId { get; set; }
         public string role { get; set; }
         public DateTime CreatedOn { get; set; }
+
+        public Workgroup Workgroup { get; set; }
     }
 }

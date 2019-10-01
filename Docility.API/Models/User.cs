@@ -13,5 +13,7 @@ namespace Docility.API.Models
         [System.ComponentModel.DefaultValue("dev")]
         public string role { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
+        public DateTime LastActive { get; set; } = DateTime.Now;
+        public Workgroup Workgroups { get; set; }
     }
 }

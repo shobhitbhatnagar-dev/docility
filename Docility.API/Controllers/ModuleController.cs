@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Docility.API.Data;
+using Docility.API.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +14,11 @@ namespace Docility.API.Controllers
     public class ModuleController : ControllerBase
     {
         private readonly IDocilityRepository _repo;
+        private readonly IMapper _mapper;
 
-        public ModuleController(IDocilityRepository repo)
+        public ModuleController(IDocilityRepository repo, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
 
         }
@@ -28,15 +32,18 @@ namespace Docility.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetModule(int id)
         {
-            var module = await _repo.GetModule(id);
-            return Ok(module);
+            var modules = await _repo.GetModule(id);
+            var modulesToReturn = _mapper.Map<IEnumerable<ModuleByProjectDto>>(modules);
+            return Ok(modulesToReturn);
         }
 
         [HttpGet("byproject/{id}")]
         public async Task<IActionResult> GetModulesByProject(int id)
         {
-            var module = await _repo.GetModulesByProject(id);
-            return Ok(module);
+            var modules = await _repo.GetModulesByProject(id);
+            var modulesToReturn = _mapper.Map<IEnumerable<ModuleByProjectDto>>(modules);
+            
+            return Ok(modulesToReturn);
         }
     }
 }

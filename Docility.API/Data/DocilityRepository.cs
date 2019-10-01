@@ -24,6 +24,25 @@ namespace Docility.API.Data
             _context.Remove(entity);
         }
 
+        public async Task<Bug> GetBug(int id)
+        {
+           var Bug = await _context.Bugs
+            .Include( c => c.Communications)
+            .Include( a => a.Attachments)
+            .FirstOrDefaultAsync(b => b.Id == id);
+            return Bug;
+        }
+
+        public async Task<IEnumerable<Bug>> GetBugs()
+        {
+            var Bugs = await _context.Bugs
+            .Include( c => c.Communications)
+            .Include( a => a.Attachments)
+            .ToListAsync();
+
+            return Bugs;
+        }
+
         public async Task<Module> GetModule(int id)
         {
             var module = await _context.Modules.FirstOrDefaultAsync(m => m.Id == id);
@@ -39,7 +58,7 @@ namespace Docility.API.Data
 
         public async Task<IEnumerable<Module>> GetModulesByProject(int projectId)
         {
-            var modules = await _context.Modules.Where(m => m.ProjectId == projectId).ToListAsync();
+            var modules = await _context.Modules.Include(p=> p.Projects).Where(m => m.ProjectId == projectId).ToListAsync();
             return modules;
         }
 
@@ -57,13 +76,13 @@ namespace Docility.API.Data
 
         public async Task<User> GetUser(int id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
+            var user = await _context.Users.Include(w => w.Workgroups).FirstOrDefaultAsync(p => p.Id == id);
             return user;
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
+            var users = await _context.Users.Include(w => w.Workgroups).ToListAsync();
             return users;
         }
 

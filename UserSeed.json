@@ -1,0 +1,62 @@
+[
+  {
+    "Username": "Mejia",
+    "Password": "password",
+    "Email": "cardenaslloyd@portalis.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Mccormick",
+    "Password": "password",
+    "Email": "hunterturner@vicon.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Saunders",
+    "Password": "password",
+    "Email": "simmonsriley@overfork.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Solomon",
+    "Password": "password",
+    "Email": "mcguirewalsh@comtrek.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Avery",
+    "Password": "password",
+    "Email": "briggsmooney@verbus.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Mckinney",
+    "Password": "password",
+    "Email": "jodiegriffith@protodyne.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Osborne",
+    "Password": "password",
+    "Email": "ortizhall@zenthall.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Spears",
+    "Password": "password",
+    "Email": "kanehopkins@ultrasure.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Grimes",
+    "Password": "password",
+    "Email": "genevievegardner@quinex.com",
+    "role": "dev"
+  },
+  {
+    "Username": "Clay",
+    "Password": "password",
+    "Email": "owennoel@memora.com",
+    "role": "dev"
+  }
+]

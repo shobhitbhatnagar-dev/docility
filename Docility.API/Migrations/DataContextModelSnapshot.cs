@@ -167,15 +167,21 @@ namespace Docility.API.Migrations
 
                     b.Property<string>("EmailId");
 
+                    b.Property<DateTime>("LastActive");
+
                     b.Property<byte[]>("PasswordHash");
 
                     b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("Username");
 
+                    b.Property<int?>("WorkgroupsId");
+
                     b.Property<string>("role");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("WorkgroupsId");
 
                     b.ToTable("Users");
                 });
@@ -251,6 +257,13 @@ namespace Docility.API.Migrations
                         .WithMany("Modules")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Docility.API.Models.User", b =>
+                {
+                    b.HasOne("Docility.API.Models.Workgroup", "Workgroups")
+                        .WithMany()
+                        .HasForeignKey("WorkgroupsId");
                 });
 #pragma warning restore 612, 618
         }

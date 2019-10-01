@@ -16,6 +16,8 @@ namespace Docility.API.Data
         Task<IEnumerable<Module>> GetModules();
         Task<Module> GetModule(int id);
         Task<IEnumerable<Module>> GetModulesByProject(int projectId);
+        Task<IEnumerable<Bug>> GetBugs();
+        Task<Bug> GetBug(int id);
          
 
     }
