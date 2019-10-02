@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlertifyService } from '../_services/alertify.service';
+import { ProjectService } from '../_services/project.service';
+import { Project } from '../_models/project';
 
 @Component({
   selector: 'app-project',
@@ -8,18 +10,49 @@ import { AlertifyService } from '../_services/alertify.service';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-projects: any;
-  constructor(private http: HttpClient, private alert: AlertifyService) { }
+  projects: any;
+  project: any;
+  viewProject: boolean ;
+  constructor(
+    private http: HttpClient,
+    private alert: AlertifyService,
+    private projectServices: ProjectService
+  ) {}
 
   ngOnInit() {
-    this.getProjects();
+    this.loadProjects();
+    this.viewProject = false;
   }
 
-  getProjects() {
-    this.http.get('http://localhost:5000/api/project').subscribe(response => {
-    this.projects = response;
-    }, error => {
-      this.alert.error(error);
-    });
+  loadProjects() {
+    this.projectServices.getProjects().subscribe(
+      (projects: Project[]) => {
+        this.projects = projects;
+      },
+      error => {
+        this.alert.error(error);
+      }
+    );
+  }
+
+  backToProjects() {
+    this.viewProject = false;
+  }
+
+  getProject(id: number) {
+    this.projectServices.getProject(id).subscribe(
+      (project: Project) => {
+        console.log(project);
+        this.project = project;
+        this.viewProject = true;
+      },
+      error => {
+        this.alert.error(error);
+      }, () => {
+        if ( this.project) {
+          this.viewProject = true;
+        }
+      }
+    );
   }
 }

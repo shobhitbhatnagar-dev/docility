@@ -1,11 +1,30 @@
-<div>
-  <table>
-    <thead>
-      <td>Id</td><td>Project Name</td><td>Created By</td><td>Created On</td>
-    </thead>
-    <tr *ngFor="let project of projects">
-      <td>{{project.id}}</td><td>{{project.projectName}}</td><td>{{project.createdby}}</td><td>{{project.createdOn}}</td>
-    </tr>
-  </table>
-</div>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+  <li class="breadcrumb-item"><a [routerLink]="['/project']">Projects</a></li>
+  <li class="breadcrumb-item active"></li>
+</ol>
 
+<!--List Options with Data starts here-->
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div *ngIf="!viewProject" class="col-10">
+      <h2>List of Projects</h2>
+      <ul *ngFor="let p of projects" class="list-group">
+        <li
+          class="list-group-item ">
+          <div class="card border-primary mb-3" >
+            <div class="card-header">{{p.id}}. {{p.projectName}}</div>
+            <div class="card-body">
+              <p>Modules under this project are</p>
+              <h6 *ngFor="let m of p.modules" class="card-title">> {{m.moduleName}}</h6>
+              <footer class="blockquote-footer">Created by {{p.createdby}} <cite title="Source Title">{{p.createdOn}}</cite></footer>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<!--List Options with Data Ends here-->

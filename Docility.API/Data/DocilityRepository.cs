@@ -38,6 +38,7 @@ namespace Docility.API.Data
             var Bugs = await _context.Bugs
             .Include( c => c.Communications)
             .Include( a => a.Attachments)
+            .Include( w => w.Workgroup )
             .ToListAsync();
 
             return Bugs;
@@ -76,7 +77,7 @@ namespace Docility.API.Data
 
         public async Task<User> GetUser(int id)
         {
-            var user = await _context.Users.Include(w => w.Workgroups).FirstOrDefaultAsync(p => p.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);          
             return user;
         }
 

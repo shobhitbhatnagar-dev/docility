@@ -22,6 +22,10 @@ import { AuthGuard } from './_guards/auth.guard';
 import { AdminGuard } from './_guards/admin.guard';
 import { DeveloperGuard } from './_guards/developer.guard';
 import { TesterGuard } from './_guards/tester.guard';
+import { UserService } from './_services/user.service';
+import { UserComponent } from './user/user.component';
+import { ProjectService } from './_services/project.service';
+import { ModuleService } from './_services/module.service';
 
 
 
@@ -33,7 +37,8 @@ import { TesterGuard } from './_guards/tester.guard';
       HomeComponent,
       RegisterComponent,
       ModulesComponent,
-      BugsComponent
+      BugsComponent,
+      UserComponent
    ],
    imports: [
       BrowserModule,
@@ -51,7 +56,10 @@ import { TesterGuard } from './_guards/tester.guard';
       AuthGuard,
       AdminGuard,
       DeveloperGuard,
-      TesterGuard
+      TesterGuard,
+      UserService,
+      ProjectService,
+      ModuleService
    ],
    bootstrap: [
       AppComponent
