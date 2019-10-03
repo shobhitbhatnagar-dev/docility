@@ -13,6 +13,10 @@ namespace Docility.API.Helpers
             CreateMap<Module, ModuleByProjectDto>();
             CreateMap<Project, ProjectswithoutModulesDto>();
             CreateMap<Module, ModuleByProjectDto>();
+            CreateMap<Project, ProjectSingleDto>();
+            CreateMap<Module, ModuleSingleDto>();
+            CreateMap<Bug, BugDetailsDto>();
+            CreateMap<Attachment, AttachmentDetailsDto>();
         }   
     }
 }

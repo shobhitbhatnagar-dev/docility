@@ -1,11 +1,9 @@
-namespace Docility.API.Models
+namespace Docility.API.Dtos
 {
-    public class Attachment
+    public class AttachmentDetailsDto
     {
         public int Id { get; set; }
         public string AttachmentUrl { get; set; }
         public string Description { get; set; }
-        public Bug Bug { get; set; }
-        public int BugId { get; set; }
     }
 }

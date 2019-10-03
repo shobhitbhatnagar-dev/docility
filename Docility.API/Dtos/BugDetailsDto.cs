@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Docility.API.Models;
 
-namespace Docility.API.Models
+namespace Docility.API.Dtos
 {
-    public class Bug
+    public class BugDetailsDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public Project  Project { get; set; }
-        public Module Module { get; set; }
+        public ProjectSingleDto Project { get; set; }
+        public ModuleSingleDto Module { get; set; }
         public int PriorityId { get; set; }
         public string Priority { get; set; }
         public int CategoryId { get; set; }
@@ -21,15 +22,13 @@ namespace Docility.API.Models
         public string Status { get; set; }
         public int ReportedBy { get; set; }
         public string ReportedByName { get; set; }
-        //Reported On Is auto Populated
-        public DateTime ReportedOn { get; set; } = DateTime.Now;
+        public DateTime ReportedOn { get; set; }
         public int AssignedTo { get; set; }
         public string AssignedToName { get; set; }
         public DateTime AssignedOn { get; set; }
         public string ClosingRemark { get; set; }
         public DateTime ClosedOn { get; set; }
-        public Workgroup Workgroup { get; set; }
-        public ICollection<Communication> Communications { get; set; }
-        public ICollection<Attachment> Attachments { get; set; }
+        public WorkgroupSingleDto Workgroup { get; set; }
+        public ICollection<AttachmentDetailsDto> Attachments { get; set; }
     }
 }

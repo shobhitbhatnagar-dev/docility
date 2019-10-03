@@ -18,7 +18,7 @@
             <div class="card-body">
               <p>Modules under this project are</p>
               <h6 *ngFor="let m of p.modules" class="card-title">> {{m.moduleName}}</h6>
-              <footer class="blockquote-footer">Created by {{p.createdby}} <cite title="Source Title">{{p.createdOn}}</cite></footer>
+              <footer class="blockquote-footer">Created by {{p.createdby}} on  <cite title="Source Title">{{p.createdOn |date:'mediumDate'}}</cite></footer>
             </div>
           </div>
         </li>

@@ -1,3 +1,4 @@
+using Docility.API.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace Docility.API.Helpers

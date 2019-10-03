@@ -45,7 +45,6 @@ namespace Docility.API.Controllers
             return StatusCode(201);
         }
 
-
         //Login Methord for genrating tokens
         [HttpPost("login")]
         public async Task<ActionResult> Login(UserforLoginDto userForLoginDto)

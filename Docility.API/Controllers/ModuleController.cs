@@ -27,13 +27,14 @@ namespace Docility.API.Controllers
         public async Task<IActionResult> GetModules(int projectId)
         {
             var modules = await _repo.GetModules();
-            return Ok(modules);
+            var modulesToReturn = _mapper.Map<IEnumerable<ModuleDetailsDto>>(modules);
+            return Ok(modulesToReturn);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetModule(int id)
         {
             var modules = await _repo.GetModule(id);
-            var modulesToReturn = _mapper.Map<IEnumerable<ModuleByProjectDto>>(modules);
+            var modulesToReturn = _mapper.Map<IEnumerable<ModuleDetailsDto>>(modules);
             return Ok(modulesToReturn);
         }
 
@@ -42,7 +43,6 @@ namespace Docility.API.Controllers
         {
             var modules = await _repo.GetModulesByProject(id);
             var modulesToReturn = _mapper.Map<IEnumerable<ModuleByProjectDto>>(modules);
-            
             return Ok(modulesToReturn);
         }
     }

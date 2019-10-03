@@ -25,6 +25,8 @@ namespace Docility.API.Migrations
 
                     b.Property<int>("BugId");
 
+                    b.Property<string>("Description");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BugId");
@@ -55,17 +57,13 @@ namespace Docility.API.Migrations
 
                     b.Property<string>("ExpectedResults");
 
-                    b.Property<int>("ModuleId");
-
-                    b.Property<string>("MouleName");
+                    b.Property<int?>("ModuleId");
 
                     b.Property<string>("Priority");
 
                     b.Property<int>("PriorityId");
 
-                    b.Property<int>("ProjectId");
-
-                    b.Property<string>("ProjectName");
+                    b.Property<int?>("ProjectId");
 
                     b.Property<int>("ReportedBy");
 
@@ -87,6 +85,10 @@ namespace Docility.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ModuleId");
+
+                    b.HasIndex("ProjectId");
+
                     b.HasIndex("WorkgroupId");
 
                     b.ToTable("Bugs");
@@ -105,9 +107,9 @@ namespace Docility.API.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
-                    b.Property<int>("WorkgroupId");
+                    b.Property<int?>("WorkgroupId");
 
                     b.HasKey("Id");
 
@@ -128,6 +130,8 @@ namespace Docility.API.Migrations
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Createdby");
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<string>("ModuleName")
                         .IsRequired();
@@ -150,6 +154,8 @@ namespace Docility.API.Migrations
 
                     b.Property<string>("Createdby");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<string>("ProjectName")
                         .IsRequired();
 
@@ -167,6 +173,8 @@ namespace Docility.API.Migrations
 
                     b.Property<string>("EmailId");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<DateTime>("LastActive");
 
                     b.Property<byte[]>("PasswordHash");
@@ -175,13 +183,13 @@ namespace Docility.API.Migrations
 
                     b.Property<string>("Username");
 
-                    b.Property<int?>("WorkgroupsId");
+                    b.Property<int?>("WorkgroupId");
 
                     b.Property<string>("role");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WorkgroupsId");
+                    b.HasIndex("WorkgroupId");
 
                     b.ToTable("Users");
                 });
@@ -209,6 +217,8 @@ namespace Docility.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("Timestamp");
@@ -228,6 +238,14 @@ namespace Docility.API.Migrations
 
             modelBuilder.Entity("Docility.API.Models.Bug", b =>
                 {
+                    b.HasOne("Docility.API.Models.Module", "Module")
+                        .WithMany()
+                        .HasForeignKey("ModuleId");
+
+                    b.HasOne("Docility.API.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId");
+
                     b.HasOne("Docility.API.Models.Workgroup", "Workgroup")
                         .WithMany()
                         .HasForeignKey("WorkgroupId");
@@ -242,13 +260,11 @@ namespace Docility.API.Migrations
 
                     b.HasOne("Docility.API.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
 
                     b.HasOne("Docility.API.Models.Workgroup", "Workgroup")
                         .WithMany()
-                        .HasForeignKey("WorkgroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("WorkgroupId");
                 });
 
             modelBuilder.Entity("Docility.API.Models.Module", b =>
@@ -261,9 +277,9 @@ namespace Docility.API.Migrations
 
             modelBuilder.Entity("Docility.API.Models.User", b =>
                 {
-                    b.HasOne("Docility.API.Models.Workgroup", "Workgroups")
-                        .WithMany()
-                        .HasForeignKey("WorkgroupsId");
+                    b.HasOne("Docility.API.Models.Workgroup")
+                        .WithMany("Users")
+                        .HasForeignKey("WorkgroupId");
                 });
 #pragma warning restore 612, 618
         }

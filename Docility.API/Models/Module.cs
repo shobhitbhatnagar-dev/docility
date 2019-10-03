@@ -15,5 +15,6 @@ namespace Docility.API.Models
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public Project Projects { get; set; }
         public int ProjectId { get; set; }
+        public bool IsActive { get; set; }
     }
 }

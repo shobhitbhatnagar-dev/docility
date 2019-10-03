@@ -6,4 +6,5 @@ export interface Project {
     projectName: string;
     createdOn: Date;
     modules?: Module[];
+    isActive: boolean;
 }

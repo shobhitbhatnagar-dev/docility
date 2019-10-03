@@ -15,5 +15,6 @@ namespace Docility.API.Models
         public string Createdby { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public ICollection<Module> Modules { get; set; }
+        public bool IsActive { get; set; }
     }
 }

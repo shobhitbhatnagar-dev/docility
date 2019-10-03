@@ -14,6 +14,6 @@ namespace Docility.API.Models
         public string role { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
-        public Workgroup Workgroups { get; set; }
+        public bool IsActive { get; set; }
     }
 }

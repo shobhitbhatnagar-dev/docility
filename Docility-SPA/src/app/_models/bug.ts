@@ -1,14 +1,13 @@
 import { Workgroup } from './workgroup';
 import { Attachment } from './Attachment';
-import { Communication } from './communication';
+import { Project } from './project';
+import { Module } from './Module';
 
 export interface Bug {
     id: number;
     title: string;
-    projectId: number;
-    projectName: string;
-    moduleId: number;
-    moduleName: number;
+    project: Project;
+    module: Module;
     priorityId: number;
     priority: string;
     categoryId: number;
@@ -24,10 +23,9 @@ export interface Bug {
     reportedOn: Date;
     assignedTo?: number;
     assignedToName?: string;
-    assignedOn: Date;
+    assignedOn?: Date;
     closingRemark?: string;
     closedOn?: Date;
     workgroup?: Workgroup;
-    communications?: Communication[];
     attachments?: Attachment[];
 }

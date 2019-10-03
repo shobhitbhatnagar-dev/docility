@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Docility.API.Data;
+using Docility.API.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,13 +27,15 @@ namespace Docility.API.Controllers
         public async Task<IActionResult> GetBugs()
         {
             var bugs = await _repo.GetBugs();
-            return Ok(bugs);
+            var bugsToReturn = _mapper.Map<IEnumerable<BugDetailsDto>>(bugs);
+            return Ok(bugsToReturn);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetModule(int id)
         {
-            var bug = await _repo.GetModule(id);
-            return Ok(bug);
+            var bug = await _repo.GetBug(id);
+            var bugToReturn = _mapper.Map<BugDetailsDto>(bug);
+            return Ok(bugToReturn);
         }
 
     }

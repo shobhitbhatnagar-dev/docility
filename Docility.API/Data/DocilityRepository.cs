@@ -27,8 +27,11 @@ namespace Docility.API.Data
         public async Task<Bug> GetBug(int id)
         {
            var Bug = await _context.Bugs
+            .Include( p => p.Project)
+            .Include( m => m.Module)
             .Include( c => c.Communications)
             .Include( a => a.Attachments)
+            .Include( w => w.Workgroup )
             .FirstOrDefaultAsync(b => b.Id == id);
             return Bug;
         }
@@ -36,6 +39,8 @@ namespace Docility.API.Data
         public async Task<IEnumerable<Bug>> GetBugs()
         {
             var Bugs = await _context.Bugs
+            .Include( p => p.Project)
+            .Include( m => m.Module)
             .Include( c => c.Communications)
             .Include( a => a.Attachments)
             .Include( w => w.Workgroup )
@@ -53,7 +58,7 @@ namespace Docility.API.Data
 
         public async Task<IEnumerable<Module>> GetModules()
         {
-            var modules = await _context.Modules.ToListAsync();
+            var modules = await _context.Modules.Include(p => p.Projects).ToListAsync();
             return modules;
         }
 
@@ -83,7 +88,7 @@ namespace Docility.API.Data
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var users = await _context.Users.Include(w => w.Workgroups).ToListAsync();
+            var users = await _context.Users.ToListAsync();
             return users;
         }
 

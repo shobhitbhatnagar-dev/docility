@@ -10,5 +10,6 @@ namespace Docility.API.Dtos
         public string Createdby { get; set; }
         public DateTime CreatedOn { get; set; } 
         public ICollection<ModuleByProjectDto> Modules { get; set; }
+        public bool IsActive { get; set; }
     }
 }

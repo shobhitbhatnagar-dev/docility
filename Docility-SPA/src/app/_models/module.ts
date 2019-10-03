@@ -4,4 +4,5 @@ export interface Module {
     createdby: string;
     createdOn: Date;
     projectId: number;
+    isActive: boolean;
 }
