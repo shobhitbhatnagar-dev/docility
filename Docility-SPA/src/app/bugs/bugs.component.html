@@ -22,8 +22,14 @@
           <h2>Bugs Details</h2>
           <div class="card">
               <div class="card-body">
-                <h4 class="card-title">{{bug.id}}. {{bug.title}}</h4>
-                <h6 class="card-subtitle mb-2">{{bug.category}} | {{bug.priority}}</h6>
+                <h5 class="card-title">Bugs Id :{{bug.id}}</h5>
+                <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 bd-highlight"><strong>Title :&nbsp;</strong> {{bug.title}}</div>
+                    <div class="p-2 bd-highlight"><strong>Priority:&nbsp;</strong>{{bug.priority}}</div>
+                    <div class="p-2 bd-highlight"><strong>Priority:&nbsp;</strong></div>
+                  </div>
+
+                <h6 class="card-subtitle mb-2"></h6>
                 <p class="card-text muted"> </p>
                 <button type="button" (click)="backToBugs()" class="btn btn-warning">Back</button>
               </div>
