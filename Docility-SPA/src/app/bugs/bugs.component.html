@@ -5,36 +5,121 @@
 </ol>
 
 <div class="container">
-    <div class="row">
-      <div class="col"></div>
-      <div *ngIf="!viewBug" class="col-7">
+  <div class="row">
+    <div class="col"></div>
+    <div *ngIf="!viewBug" class="col-12">
+      <div class="col-1"></div>
+      <div *ngFor="let b of bugs" class="col-12">
         <h2>List of Bugs</h2>
-        <ul *ngFor="let b of bugs" class="list-group">
-          <li
-            class="list-group-item d-flex justify-content-between align-items-center"
-          >
-            {{ b.id }}. {{ b.title }}
-            <button type="button" (click)="getBug(b.id)" class="btn btn-info">Details</button>
-          </li>
-        </ul>
-      </div>
-      <div *ngIf="viewBug" class="col-10">
-          <h2>Bugs Details</h2>
-          <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Bugs Id :{{bug.id}}</h5>
-                <div class="d-flex flex-row bd-highlight mb-3">
-                    <div class="p-2 bd-highlight"><strong>Title :&nbsp;</strong> {{bug.title}}</div>
-                    <div class="p-2 bd-highlight"><strong>Priority:&nbsp;</strong>{{bug.priority}}</div>
-                    <div class="p-2 bd-highlight"><strong>Priority:&nbsp;</strong></div>
-                  </div>
-
-                <h6 class="card-subtitle mb-2"></h6>
-                <p class="card-text muted"> </p>
-                <button type="button" (click)="backToBugs()" class="btn btn-warning">Back</button>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-row bd-highlight mb-3">
+              <div class="p-2 bd-highlight">
+                <strong>Bug Id&nbsp;</strong>{{ b.id }}
+              </div>
+              <div class="p-2 bd-highlight">
+                <strong>Title:</strong>&nbsp;{{ b.title }}
+              </div>
+              <div class="p-2 bd-highlight">
+                <strong>Priority:</strong>&nbsp;{{ b.priority }}
+              </div>
+              <div class="p-2 bd-highlight">
+                <strong>Category:</strong>&nbsp;{{ b.category }}
+              </div>
+              <div class="p-2 bd-highlight">
+                <strong>Reported On:</strong>&nbsp;{{
+                  b.reportedOn | date: "mediumDate"
+                }}
+              </div>
+              <div class="p-2 bd-highlight">
+                <strong>Reported By</strong>&nbsp;{{ b.reportedByName }}
               </div>
             </div>
+            <button type="button" (click)="getBug(b.id)" class="btn btn-info">
+              Details
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="col"></div>
     </div>
+    <div *ngIf="viewBug" class="col-12">
+      <h2>Bugs Details</h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            Bugs Id :{{ bug.id }}. {{ bug.title }}&nbsp;
+            <span class="badge badge-primary"
+              >Status:&nbsp; {{ bug.status }}
+            </span>
+          </h5>
+          <hr />
+          <!--Flex Row 1-->
+          <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+              <strong>Project:&nbsp;</strong>{{ bug.project.projectName }}
+            </div>
+            <div class="p-2 bd-highlight">
+              <strong>Project:&nbsp;</strong>{{ bug.module.moduleName }}
+            </div>
+
+            <div class="p-2 bd-highlight">
+              <strong>Priority:&nbsp;</strong>{{ bug.priority }}
+            </div>
+            <div class="p-2 bd-highlight">
+              <strong>Category:&nbsp;</strong>{{ bug.category }}
+            </div>
+            <div class="p-2 bd-highlight">
+              <strong>Reproducibility:&nbsp;</strong>{{ bug.reproducibility }}
+            </div>
+          </div>
+          <hr />
+          <!--Flex Row 2-->
+          <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+              <strong>Workgroup:&nbsp;</strong>{{ bug.workgroup.name }}
+            </div>
+            <div class="p-2 bd-highlight">
+              <strong>Reported By:&nbsp;</strong>{{ bug.reportedByName }}
+            </div>
+            <div class="p-2 bd-highlight">
+              <strong>Reported On:&nbsp;</strong
+              >{{ bug.reportedOn | date: "mediumDate" }}
+            </div>
+          </div>
+          <hr />
+
+          <!--Flex Row 3-->
+          <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+              <div class="alert alert-dismissible alert-secondary">
+                <strong>Description :&nbsp;</strong>{{ bug.description }}
+              </div>
+            </div>
+            <div class="p-2 bd-highlight">
+              <div class="alert alert-dismissible alert-secondary">
+                <strong>Expected Result :&nbsp;</strong>{{ bug.description }}
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <!--Flex Row 4 -->
+          <div class="d-flex flex-row bd-highlight">
+            <div class="p-2 bd-highlight">
+                <ul  class="list-inline" *ngFor="let a of bug.attachments" >             
+                  <li class="list-inline-item">  
+                      <i class="fa fa-paperclip" ></i> <a href="{{ a.attachmentUrl }}" target="_blank">Attachment-{{ a.id }}</a> : Description : {{a.description}}
+                  </li>
+              </ul>
+            </div>
+          </div>
+          <h6 class="card-subtitle mb-2"></h6>
+          <p class="card-text muted"></p>
+          <button type="button" (click)="backToBugs()" class="btn btn-warning">
+            Back
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
   </div>
+</div>
